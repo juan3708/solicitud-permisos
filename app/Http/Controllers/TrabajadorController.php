@@ -17,6 +17,7 @@ class TrabajadorController extends Controller
         $email = $request->email;
         $rut = $request->rut;
         $jerarquia_id = $request->jerarquia_id;
+        $password = $request->password;
 
         $trabajador = new Trabajador();
 
@@ -33,6 +34,7 @@ class TrabajadorController extends Controller
         $trabajador->email = $email;
         $trabajador->rut = $rut;
         $trabajador->jerarquia_id = $jerarquia_id;
+        $trabajador->password = $password;
 
         $trabajador->save();
 
@@ -67,5 +69,66 @@ class TrabajadorController extends Controller
         $result->trabajador = $trabajador;
 
         return response()->json($result);
+    }
+
+    public function login(Request $request){
+        $result = new \stdClass();
+
+        $email = $request->email;
+        $password = $request->password;
+
+        $trabajador = Trabajador::where('email',$email)
+                                ->where('password',$password)
+                                ->first();
+        
+        if($trabajador != NULL){
+            if($trabajador->authenticate == 0 || $trabajador->authenticate ==  null ){
+                $trabajador->load('jerarquia');
+                $trabajador->authenticate = 1;
+                $trabajador->save();
+                $result->code = 200;
+                $result->message = 'Se ingreso exitosamente';
+                $result->trabajador = $trabajador;
+                return response()->json($result);
+            }else{
+                $result->code = 201;
+                $result->message = 'El usuario ya esta ingresado';
+                return response()->json($result);
+            }
+        }
+        $result->code = 400;
+        $result->message = 'Credenciales no validas';
+        return response()->json($result);
+        
+
+    }
+
+    public function logout(Request $request){
+        $result = new \stdClass();
+
+        $id = $request->id;
+
+        $trabajador = Trabajador::where('id',$id)
+                                    ->first();
+
+        $trabajador->authenticate = 0;
+        $trabajador->save();
+        $result->code = 200;
+        $result->message = 'Se deslogeo exitosamente';
+        return response()->json($result);
+
+    }
+
+    public function buscarTrabajador(Request $request){
+        $result = new \stdClass();
+
+        $id_trabajador = $request->id_trabajador;
+        $trabajador = Trabajador::where('id',$id_trabajador)->first();
+        $trabajador->load('jerarquia','grupo','solicitud');
+        $result->code = 200;
+        $result->message = 'Trabajador encontrado con exito';
+        $result->trabajador = $trabajador;
+        return response()->json($result);
+
     }
 }

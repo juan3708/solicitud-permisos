@@ -30,11 +30,23 @@ class GrupoController extends Controller
 
     public function listar(Request $request){
         $result = new \stdClass();
-        $grupos = Grupo::all()->load('trabajador');
+        $grupos = Grupo::all()->load('trabajador','trabajador.jerarquia');
         $result->code = 200;
         $result->message = 'listado de grupos existente';
         $result->grupos = $grupos;
 
+        return response()->json($result);
+    }
+
+    public function buscar(Request $request){
+        $result = new \stdClass();
+
+        $id_grupo = $request->id_grupo;
+        $grupo = Grupo::where('id',$id_grupo)->first();
+        $grupo->load('trabajador','trabajador.jerarquia');
+        $result->code = 200;
+        $result->message = 'Grupo encontrado con exito';
+        $result->grupo = $grupo;
         return response()->json($result);
     }
 }

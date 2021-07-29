@@ -1,0 +1,52 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" routerLink='/perfil'>SPW</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" routerLink='/perfil' *ngIf="trabajador.jerarquia.tipo === 'Aprobador' || trabajador.jerarquia.tipo === 'Pre-aprobador' || trabajador.jerarquia.tipo==='Solicitante'">Perfil</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle"  id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false" *ngIf="trabajador.jerarquia.tipo === 'Aprobador' || trabajador.jerarquia.tipo === 'Pre-aprobador'" >
+                        Trabajador
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" routerLink='/trabajadores' >Listado de trabajadores</a></li>
+                        <li><a class="dropdown-item" routerLink='/trabajador/crear'  >Crear trabajador</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle"  id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Grupos
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" routerLink='/grupo/listar' *ngIf="trabajador.jerarquia.tipo === 'Aprobador' || trabajador.jerarquia.tipo === 'Pre-aprobador' ">Listado grupos</a></li>
+                        <li><a class="dropdown-item" routerLink='/grupo/ver' *ngIf="trabajador.jerarquia.tipo === 'Aprobador' || trabajador.jerarquia.tipo === 'Pre-aprobador' || trabajador.jerarquia.tipo==='Solicitante'">Ver mi grupo</a></li>
+                    
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle"  id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Solicitud
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" routerLink='/solicitudes/listar' *ngIf="trabajador.jerarquia.tipo === 'Aprobador' || trabajador.jerarquia.tipo === 'Pre-aprobador'" >Listado de Solicitudes</a></li>
+                        <li><a class="dropdown-item" routerLink='/solicitudes/ver' *ngIf="trabajador.jerarquia.tipo === 'Aprobador' || trabajador.jerarquia.tipo === 'Pre-aprobador' || trabajador.jerarquia.tipo==='Solicitante'">Ver Solicitudes </a></li>
+                        <li><a class="dropdown-item" routerLink='/solicitudes/rechazado' *ngIf="trabajador.jerarquia.tipo === 'Aprobador' || trabajador.jerarquia.tipo === 'Pre-aprobador'">Solicitudes rechazado </a></li>
+                        <li><a class="dropdown-item" routerLink='/solicitudes/aprobado' *ngIf="trabajador.jerarquia.tipo === 'Aprobador' || trabajador.jerarquia.tipo === 'Pre-aprobador'">Solcitudes aprobado </a></li>
+                    </ul>
+                </li>
+            </ul>
+            <form class="d-flex">
+                <button class="btn btn-outline-danger" type="button" (click)="logout()" >Cerrar Sesion</button>
+            </form>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,45 @@
+<app-header></app-header>
+<div class="row" style="padding-bottom: 1%;"></div>
+<div class="row" style="margin: 1%;">
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Nombre</label>
+        <input type="text" class="form-control" #nombre placeholder="Juanito">
+    </div>
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Apellido</label>
+        <input type="text" class="form-control" #apellido placeholder="Perez">
+    </div>
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Email</label>
+        <input type="email" class="form-control" #email placeholder="email@email.com">
+    </div>
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Contraseña</label>
+        <input type="text" class="form-control" #password placeholder="1234">
+    </div>
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Jerarquia</label>
+        <select name="jerarquia_id" class="form-control"[(ngModel)] ="jerarquia_id">
+            <option [value]="jerarquia.id" *ngFor="let jerarquia of jerarquias">{{jerarquia.nombre}}</option>
+        </select></div>
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Dias restante</label>
+        <input type="number" class="form-control" #dias_restante >
+    </div>
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Rut</label>
+        <input type="text" class="form-control" #rut placeholder="190120344">
+    </div>
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Telefono</label>
+        <input type="tel" class="form-control" #telefono >
+    </div>
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Fecha Nacimiento</label>
+        <input type="date" class="form-control" #fecha_nacimiento >
+    </div>
+    <div class="mb-3">
+        <button class="btn btn-primary " type="button" (click)="crear(nombre.value,apellido.value,dias_restante.value,email.value,fecha_nacimiento.value,
+        password.value,rut.value,telefono.value)">Guardar</button>
+      </div>
+</div>

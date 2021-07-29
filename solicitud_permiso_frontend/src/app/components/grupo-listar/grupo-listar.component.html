@@ -1,0 +1,37 @@
+<app-header></app-header>
+<div class="row" style="padding-bottom: 1%;"></div>
+<div class="row" style="margin: 1%;">
+    <h5>Listado de grupos</h5>
+    <br>
+    <div class="col">
+        <button class="btn btn-success" type="button">Crear Grupo</button>
+        <br>
+        <br>
+        <div class="card mx-auto " style="width: auto; margin: 2%;" *ngFor="let grupo of grupos">
+            <div class="card-header">
+                {{ grupo.nombre }} 
+            </div>
+            <table class="table table-striped table-responsive" style="padding: 1%;">
+                <thead>
+                  <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellido</th>
+                    <th scope="col">Rut</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Cargo</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let trabajador of grupo.trabajador">
+                    <td>{{ trabajador.nombre }}</td>
+                    <td>{{ trabajador.apellido }}</td>
+                    <td>{{ trabajador.rut }}</td>
+                    <td>{{ trabajador.email }}</td>
+                    <td>{{ trabajador.jerarquia.nombre }}</td>
+                   </tr>
+                </tbody>
+              </table>
+        </div>
+
+    </div>
+</div>

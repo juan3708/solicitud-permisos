@@ -1,0 +1,26 @@
+<app-header></app-header>
+<div class="row" style="padding-bottom: 1%;"></div>
+<div class="card mx-auto " style="width: 18rem; ">
+    <div class="card-header">
+        {{ trabajador.nombre }} {{ trabajador.apellido }}
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">Email: {{ trabajador.email }}</li>
+        <li class="list-group-item">Fecha nacimiento: {{ trabajador.fecha_nacimiento }} </li>
+        <li class="list-group-item">Tipo: {{ trabajador.jerarquia.tipo }}</li>
+        <li class="list-group-item">Telefono: {{ trabajador.telefono }}</li>
+        <li class="list-group-item">Dias restantes: {{ trabajador.dias_restante }}</li>
+        <li class="list-group-item">rut: {{ trabajador.rut }}</li>
+    </ul>
+</div>
+<br>
+<div class="row" style="margin: 1%;">
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Grupos</label>
+        <select name="jerarquia_id" class="form-control"[(ngModel)] ="grupo_id">
+            <option [value]="grupo.id" *ngFor="let grupo of grupos">{{grupo.nombre}}</option>
+        </select></div>
+    <div class="mb-3">
+        <button class="btn btn-primary " type="button" (click)="asignar()">Asignar</button>
+      </div>
+</div>

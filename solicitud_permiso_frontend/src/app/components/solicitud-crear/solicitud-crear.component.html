@@ -1,0 +1,18 @@
+<app-header></app-header>
+<div class="row" style="padding-bottom: 1%;"></div><div class="row" style="margin: 1%;">
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Dias a solicitar</label>
+        <input type="number" class="form-control" #dias >
+    </div>
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Motivo</label>
+        <input type="text" class="form-control" #motivo placeholder="Tramite personales">
+    </div>
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Fecha Inicio</label>
+        <input type="date" class="form-control" #fecha_inicio >
+    </div>
+    <div class="mb-3">
+        <button class="btn btn-primary " type="button" (click)="crear(dias.value,motivo.value,fecha_inicio.value)">Guardar</button>
+      </div>
+</div>

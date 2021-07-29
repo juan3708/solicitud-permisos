@@ -1,0 +1,68 @@
+<app-header></app-header>
+<div class="row" style="padding-bottom: 1%;"></div>
+<div class="row" style="margin: 1%;">
+    <h5>Listado de solicitudes pendientes</h5>
+    <br>
+    <div class="alert alert-success" role="alert" *ngIf="estado===1">
+        {{ mensaje }}
+    </div>
+    <div class="alert alert-danger" role="alert" *ngIf="estado===0">
+        {{ mensaje }}
+    </div>
+    <br>
+    <table class="table table-striped table-responsive" style="padding: 1%;">
+        <thead>
+            <tr>
+                <th scope="col">Fecha de solicitud</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Rut</th>
+                <th scope="col">Grupo</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Dias</th>
+                <th scope="col">Fecha Inicio</th>
+                <th scope="col">Fecha Final</th>
+                <th scope="col">Motivo</th>
+                <th colspan="2" scope="col">Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let solicitud of solicitudes">
+                <td>{{ solicitud.fecha | date: 'dd-MM-yyyy'}}</td>
+                <td>{{ solicitud.trabajador.nombre }}</td>
+                <td>{{ solicitud.trabajador.apellido }}</td>
+                <td>{{ solicitud.trabajador.rut }}</td>
+                <td>{{ solicitud.trabajador.grupo.nombre }}</td>
+                <td>{{ solicitud.estado }}</td>
+                <td>{{ solicitud.dias }}</td>
+                <td>{{ solicitud.fecha_inicio | date: 'dd-MM-yyyy' }}</td>
+                <td>{{ solicitud.fecha_termino | date: 'dd-MM-yyyy'}}</td>
+                <td>{{ solicitud.motivo }}</td>
+                <td><button class="btn btn-success" type="button" (click)="aprobar(solicitud.id)">aprobar</button></td>
+                <td><button class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                        (click)="setearId(solicitud.id)">rechazar</button></td>
+            </tr>
+        </tbody>
+
+    </table>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ingrese el motivo de rechazo</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <input class="form-control" type="text" placeholder="Rechazado por exceso de tiempo">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
+                    (click)="rechazar()">rechazar</button>
+            </div>
+        </div>
+    </div>
+</div>

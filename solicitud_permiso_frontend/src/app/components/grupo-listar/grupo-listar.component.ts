@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { GrupoService } from '../../services/grupo.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { GrupoService } from '../../services/grupo.service';
 })
 export class GrupoListarComponent implements OnInit {
   grupos;
-  constructor(private grupoService:GrupoService) { }
+  constructor(private grupoService:GrupoService, private router:Router) { }
 
   ngOnInit() {
     this.grupoService.listar().subscribe((resp:any)=>{
@@ -16,5 +17,7 @@ export class GrupoListarComponent implements OnInit {
       console.log(this.grupos);
     })
   }
-
+  irACrearGrupo() {
+    this.router.navigate(['/grupo']);
+  }
 }

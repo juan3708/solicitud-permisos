@@ -29,6 +29,7 @@ const routes: Routes = [
   {path: 'solicitud/crear', component: SolicitudCrearComponent },
   {path: 'solicitudes/aprobado', component: SolicitudAprobadoComponent },
   {path: 'solicitudes/rechazado', component: SolicitudRechazadoComponent },
+  {path: '**', pathMatch: 'full', redirectTo: 'login'}
 ];
 
 @NgModule({

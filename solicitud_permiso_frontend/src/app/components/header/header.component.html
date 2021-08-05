@@ -37,10 +37,11 @@
                         Solicitud
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" routerLink='/solicitudes/listar' *ngIf="trabajador.jerarquia.tipo === 'Aprobador' || trabajador.jerarquia.tipo === 'Pre-aprobador'" >Listado de Solicitudes</a></li>
-                        <li><a class="dropdown-item" routerLink='/solicitudes/ver' *ngIf="trabajador.jerarquia.tipo === 'Aprobador' || trabajador.jerarquia.tipo === 'Pre-aprobador' || trabajador.jerarquia.tipo==='Solicitante'">Ver Solicitudes </a></li>
-                        <li><a class="dropdown-item" routerLink='/solicitudes/rechazado' *ngIf="trabajador.jerarquia.tipo === 'Aprobador' || trabajador.jerarquia.tipo === 'Pre-aprobador'">Solicitudes rechazado </a></li>
-                        <li><a class="dropdown-item" routerLink='/solicitudes/aprobado' *ngIf="trabajador.jerarquia.tipo === 'Aprobador' || trabajador.jerarquia.tipo === 'Pre-aprobador'">Solcitudes aprobado </a></li>
+                        <li><a class="dropdown-item" routerLink='/solicitudes/ver' *ngIf="trabajador.jerarquia.tipo === 'Aprobador' || trabajador.jerarquia.tipo === 'Pre-aprobador' || trabajador.jerarquia.tipo==='Solicitante'">Ver mis solicitudes</a></li>
+                        <li><a class="dropdown-item" routerLink='/solicitudes/listar' *ngIf="trabajador.jerarquia.tipo === 'Aprobador' || trabajador.jerarquia.tipo === 'Pre-aprobador'" >Solicitudes pendientes</a></li>
+                        <li><a class="dropdown-item" routerLink='/solicitudes/aprobado' *ngIf="trabajador.jerarquia.tipo === 'Aprobador' || trabajador.jerarquia.tipo === 'Pre-aprobador'">Solcitudes aprobadas </a></li>
+                        <li><a class="dropdown-item" routerLink='/solicitudes/rechazado' *ngIf="trabajador.jerarquia.tipo === 'Aprobador' || trabajador.jerarquia.tipo === 'Pre-aprobador'">Solicitudes rechazadas </a></li>
+
                     </ul>
                 </li>
             </ul>
